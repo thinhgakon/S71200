@@ -14,7 +14,7 @@ namespace S71200
         static void Main(string[] args)
         {
             // Địa chỉ IP của PLC
-            string ip = "192.168.1.202";
+            string ip = "192.168.13.166";
             // Số rack và slot (thường là 0 và 1)
             short rack = 0;
             short slot = 1;
@@ -30,31 +30,38 @@ namespace S71200
                     Console.WriteLine("Kết nối thành công!");
 
                     // Bật chân Q0.0
-                    plc.Write("Q0.0", true);
+                    //plc.Write("Q0.3", false);
 
-                    Thread.Sleep(1000);
+                    //Thread.Sleep(1000);
 
-                    plc.Write("Q0.0", false);
+                    //plc.Write("Q0.4", true);
 
-                    // Kiểm tra và hiển thị kết quả
-                    var result = plc.Read("Q0.0");
+                    //// Kiểm tra và hiển thị kết quả
+                    //var result = plc.Read("Q0.0");
 
-                    if (result is bool outputValue && outputValue)
-                    {
-                        Console.WriteLine("Chân Q0.0 đã được bật.");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Không thể bật chân Q0.0.");
-                    }
+                    //if (result is bool outputValue && outputValue)
+                    //{
+                    //    Console.WriteLine("Chân Q0.0 đã được bật.");
+                    //}
+                    //else
+                    //{
+                    //    Console.WriteLine("Không thể bật chân Q0.0.");
+                    //}
+
+
+                    // Bật chân I
+                    plc.Write("I0.3", true);
+
+                    // Tắt chân I
+                    plc.Write("I0.3", false);
 
                     // Đọc dữ liệu từ đầu vào I0.0
-                    var readResult = plc.Read("I0.6");
+                    var readResult = plc.Read("I0.3");
 
-                    // Kiểm tra và hiển thị kết quả
+                    //Kiểm tra và hiển thị kết quả
                     if (readResult is bool inputValue)
                     {
-                        Console.WriteLine($"Giá trị của I0.6 là: {inputValue}");
+                        Console.WriteLine($"Giá trị của I0.3 là: {inputValue}");
                     }
                     else
                     {
