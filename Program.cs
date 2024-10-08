@@ -29,44 +29,51 @@ namespace S71200
                 {
                     Console.WriteLine("Kết nối thành công!");
 
-                    // Bật chân Q0.0
+                    //Bật chân Q0.0
+                    //plc.Write("Q0.3", true);
+
+                    Thread.Sleep(1000);
+
                     //plc.Write("Q0.3", false);
 
-                    //Thread.Sleep(1000);
+                    //plc.Write("Q0.3", true);
+                    ////plc.Write("Q0.3", false);
 
-                    //plc.Write("Q0.4", true);
-
-                    //// Kiểm tra và hiển thị kết quả
-                    //var result = plc.Read("Q0.0");
-
-                    //if (result is bool outputValue && outputValue)
-                    //{
-                    //    Console.WriteLine("Chân Q0.0 đã được bật.");
-                    //}
-                    //else
-                    //{
-                    //    Console.WriteLine("Không thể bật chân Q0.0.");
-                    //}
+                    //plc.Write("Q0.3", true);
+                    plc.Write("Q0.2", false);
 
 
-                    // Bật chân I
-                    plc.Write("I0.3", true);
+                    // Kiểm tra và hiển thị kết quả
+                    var result = plc.Read("Q0.3");
 
-                    // Tắt chân I
-                    plc.Write("I0.3", false);
-
-                    // Đọc dữ liệu từ đầu vào I0.0
-                    var readResult = plc.Read("I0.3");
-
-                    //Kiểm tra và hiển thị kết quả
-                    if (readResult is bool inputValue)
+                    if (result is bool outputValue && outputValue)
                     {
-                        Console.WriteLine($"Giá trị của I0.3 là: {inputValue}");
+                        Console.WriteLine("Chân Q0.3 đã được bật.");
                     }
                     else
                     {
-                        Console.WriteLine("Đọc giá trị không thành công.");
+                        Console.WriteLine("Không thể bật chân Q0.0.");
                     }
+
+
+                    // Bật chân I
+                    //plc.Write("I0.3", true);
+
+                    //// Tắt chân I
+                    //plc.Write("I0.3", false);
+
+                    //// Đọc dữ liệu từ đầu vào I0.0
+                    //var readResult = plc.Read("I0.3");
+
+                    ////Kiểm tra và hiển thị kết quả
+                    //if (readResult is bool inputValue)
+                    //{
+                    //    Console.WriteLine($"Giá trị của I0.3 là: {inputValue}");
+                    //}
+                    //else
+                    //{
+                    //    Console.WriteLine("Đọc giá trị không thành công.");
+                    //}
 
                     // Đóng kết nối
                     plc.Close();
